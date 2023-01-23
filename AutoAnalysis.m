@@ -1,4 +1,4 @@
-function [t_0,y_0,t_n,y_n,y_inf,n_out] = auto_analysis(test_id)
+function [t_0,y_0,t_n,y_n,y_inf,n_out] = AutoAnalysis(test_id)
 % AUTO_ANALYSIS Automatically retrieves needed values from controls test,
 % given the test id and access to the needed files in the /Data/ folder.
 % Returns five column vectors with results from each unique test.
