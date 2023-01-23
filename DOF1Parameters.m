@@ -7,7 +7,7 @@ n = 1; % Period used (IMPORTANT)
 
 %% Eval Data
 
-[t0,y0,t1,y1,y_ss] = auto_analysis(test_num);
+[t0,y0,t1,y1,y_ss] = AutoAnalysis(test_num);
 
 %% Eval Parameters
 
