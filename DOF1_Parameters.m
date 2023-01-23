@@ -1,35 +1,29 @@
 clear all; clc; close all;
-
+test_num = 1; % Test Setup, 1-3
 %% Load Data
 
 U = 0.02; % m (Val of step size)
+n = 1; % Period used (IMPORTANT)
 
-data1 = readecp("Data/DOF1_en2_manual2_test1.csv");
+%data1 = readecp("Data/DOF1_en2_manual2_test1.csv");
 
 %% Eval Data
 
-cpr = 1 / 560 / 100; % m/counts
-
-time = data(:,2);
-pos = data(:,4) .*cpr;
-
-plot(time, pos);
+% cpr = 1 / 560 / 100; % m/counts
+% 
+% time = data(:,2);
+% pos = data(:,4) .*cpr;
+% 
+% plot(time, pos);
 
 % ADD PROGRAM HERE TO FIND THE PARAMETERS NEEDED BELOW FROM DATA
 
-% Period used (IMPORTANT)
-n = 1;
-
 % Parameters that should be found from all experiments here
-t0 = [];
-t1 = [];
-y0 = [];
-y1 = [];
-y_ss = [];
+[t0,y0,t1,y1,y_ss] = auto_analysis(test_num);
 
 %% Eval Parameters
 
-[k, m, d] = DOF1evalPram(t0, t1, y0, y1, y_ss);
+[k, m, d] = DOF1evalPram(t0, t1, y0, y1, y_ss, U, n);
 
 disp("Experimentally Determined Parameters")
 fprintf("Mass: %.3f +- %.3f\n", m.avg, m.std);
@@ -38,7 +32,7 @@ fprintf("Damping Ratio: %.3f +- %.3f\n", d.avg, d.std)
 
 %% Functions
 
-function [k, m, d] = DOF1evalPram(t0, t1, y0, y1, y_ss)
+function [k, m, d] = DOF1evalPram(t0, t1, y0, y1, y_ss, U, n)
     len = length(y_ss);
     k = zeros(len, 1);
     m = zeros(len, 1);
