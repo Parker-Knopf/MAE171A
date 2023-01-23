@@ -1,4 +1,4 @@
-function [t_0,y_0,t_n,y_n,y_inf_n] = auto_analysis(test_id)
+function [t_0,y_0,t_n,y_n,y_inf,n_out] = auto_analysis(test_id)
 % AUTO_ANALYSIS Automatically retrieves needed values from controls test,
 % given the test id and access to the needed files in the /Data/ folder.
 % Returns five column vectors with results from each unique test.
@@ -6,7 +6,7 @@ function [t_0,y_0,t_n,y_n,y_inf_n] = auto_analysis(test_id)
 enc2m = 1/560/100; % Y in m
 % all_parameters = zeros(5,5,3); % Old matrix return method
 
-t_0 = []; y_0 = []; t_n = []; y_n = []; y_inf = [];
+t_0 = []; y_0 = []; t_n = []; y_n = []; y_inf = []; n_out = [];
 for m = test_id % Type of test
     for n = 1:5 % Trials of same test
         
@@ -62,8 +62,7 @@ for m = test_id % Type of test
         % Ready parameters for return
         t_0 = [t_0; t_peaks(1)]; y_0 = [y_0; y_peaks(1)];
         t_n = [t_n; t_peaks(end)]; y_n = [y_n; y_peaks(end)];
-        y_inf = [y_inf; y_inf_n];
-
+        y_inf = [y_inf; y_inf_n]; n_out = [n_out length(t_peaks)-1];
 
 %       Old method of saving variables
 %         all_parameters(:,n,m) = [t_0 y_0 t_n y_n y_inf];
