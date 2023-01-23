@@ -3,11 +3,10 @@ test_num = 1; % Test Setup, 1-3
 %% Load Data
 
 U = 0.02; % m (Val of step size)
-n = 1; % Period used (IMPORTANT)
 
 %% Eval Data
 
-[t0,y0,t1,y1,y_ss] = AutoAnalysis(test_num);
+[t0,y0,t1,y1,y_ss,n] = AutoAnalysis(test_num);
 
 %% Eval Parameters
 
