@@ -11,7 +11,7 @@ points and returns k,m,d values of a 1DOF system.
         
         C = y_ss(i) / U;
     
-        w_d = 2 * pi * n / (t1(i) - t0(i));
+        w_d = 2 * pi * n(i) / (t1(i) - t0(i));
         b_wn = 1 / (t1(i) - t0(i)) * log((y0(i) - y_ss(i)) / (y1(i) - y_ss(i)));
         w_n = sqrt(w_d^2 + b_wn^2);
         
