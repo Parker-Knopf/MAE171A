@@ -6,6 +6,7 @@ U = 0.02; % m (Val of step size)
 
 %% Eval Data
 
+% Find Values automatically from data files
 [t0,y0,t1,y1,y_ss,n] = AutoAnalysis(test_num);
 
 %% Eval Parameters
