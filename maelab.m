@@ -508,7 +508,7 @@ if option==2,
    % Here we compute step response
    %
    tstep=linspace(0,2*1e-3*dwelltime,900)';
-   ustep=[stepsize*ones(450,1);0*ones(450,1)];   
+   ustep=[stepsize*ones(450,1);0*ones(450,1)];
    % the step response without the hardware gain Khw that only plays a role in
    % feedback controller implementation
    ystep=lsim(numg0,deng,ustep,tstep);

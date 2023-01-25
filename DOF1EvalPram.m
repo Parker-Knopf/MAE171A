@@ -18,8 +18,8 @@ points and returns k,m,d values of a 1DOF system.
         b = b_wn / w_n; 
     
         k(i) = 1 / C;
-        m(i) = k(i) / C / w_n^2;
-        d(i) = 2 * b * sqrt(k(i)*m(i));
+        m(i) = 1 / (C * w_n^2);
+        d(i) = 2 * b / C / w_n;
     end
 
     k_val.avg = mean(k(:));

@@ -4,6 +4,7 @@ function [t_0,y_0,t_n,y_n,y_inf,n_out] = AutoAnalysis(test_id)
 % Returns five column vectors with results from each unique test.
 
 enc2m = 1/560/100; % Y in m
+% enc2m = 1;
 % all_parameters = zeros(5,5,3); % Old matrix return method
 
 t_0 = []; y_0 = []; t_n = []; y_n = []; y_inf = []; n_out = [];
@@ -33,7 +34,7 @@ for n = 1:5 % Trials of same test
 
     % Redefine t_0 as start of step input for test 1
     if m == 1
-        start_index = find(y > 0.003,1) - 6; % Determined by trial/error
+        start_index = find(y > 168*enc2m,1) - 6; % Determined by trial/error
         t = t(start_index:end);
         y = y(start_index:end);
         t = t - t(1);
