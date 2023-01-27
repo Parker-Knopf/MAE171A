@@ -75,13 +75,13 @@ for n = 1:5 % Trials of same test
 %         t_n = t_peaks(end); y_n = y_peaks(end);
 
     % Uncomment for visual representation of analysis
-        figure(1);
-        hold off;
-        plot(t,y);
-        hold on;
-        plot(t_peaks,y_peaks,'r.','MarkerSize',10);
-        title(sprintf('Test Setup %d, Trial %d',m,n));
-        ylabel('Position [m]'); xlabel('Time [s]');
-        t_peaks
-        w = waitforbuttonpress;
+%         figure(1);
+%         hold off;
+%         plot(t,y);
+%         hold on;
+%         plot(t_peaks,y_peaks,'r.','MarkerSize',10);
+%         title(sprintf('Test Setup %d, Trial %d',m,n));
+%         ylabel('Position [m]'); xlabel('Time [s]');
+%         t_peaks
+%         w = waitforbuttonpress;
 end
