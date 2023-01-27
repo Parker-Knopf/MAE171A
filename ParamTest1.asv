@@ -1,0 +1,21 @@
+clear all; clc; close all;
+
+format long;
+%% Eval Data
+
+% Experiment 1 to find Sys1 Parameters (Lumped Model Analysis)
+% m_eff = m1 + m2, k_eff = k1
+test_num = 3; % 2 DOF -> 1 DOF Approximation
+U = .5; % V (Val of step size)
+[t0,y0,t1,y1,y_ss,n] = AutoAnalysis(test_num);
+[k, m, d] = DOF1EvalPram(t0, t1, y0, y1, y_ss, U, n);
+
+% Experiment 2 to find Sys1 Paramters (1DOF holding Sys2)
+% k_eff = k1 + k2, m_eff = m1, d_eff = d1
+test_num = 2;
+U = 0.5; % V (Val of step size)
+
+disp("Experimentally Determined Parameters: SYS1")
+fprintf("Mass: %.8f +- %.3f\n", m.avg, m.std);
+fprintf("Spring Constant: %.8f +- %.3f\n", k.avg, k.std)
+fprintf("Damping Ratio: %.8f +- %.3f\n\n", d.avg, d.std)

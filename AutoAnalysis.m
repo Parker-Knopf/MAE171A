@@ -3,8 +3,8 @@ function [t_0,y_0,t_n,y_n,y_inf,n_out] = AutoAnalysis(test_id)
 % given the test id and access to the needed files in the /Data/ folder.
 % Returns five column vectors with results from each unique test.
 
-enc2m = 1/560/100; % Y in m
-% enc2m = 1;
+% enc2m = 1/560/100; % Y in m
+enc2m = 1;
 % all_parameters = zeros(5,5,3); % Old matrix return method
 
 t_0 = []; y_0 = []; t_n = []; y_n = []; y_inf = []; n_out = [];

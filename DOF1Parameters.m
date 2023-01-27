@@ -5,7 +5,7 @@ format long;
 
 % Experiment 1 to find Sys2 Parameters
 test_num = 1; % Hold Sys1 and occilate Sys2
-U = .5; % N (Val of step size)
+U = .1; % N (Val of step size)
 [t0,y0,t1,y1,y_ss,n] = AutoAnalysis(test_num);
 [k2, m2, d2] = DOF1EvalPram(t0, t1, y0, y1, y_ss, U, n);
 
