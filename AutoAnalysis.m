@@ -3,13 +3,12 @@ function [t_0,y_0,t_n,y_n,y_inf,n_out] = AutoAnalysis(test_id)
 % given the test id and access to the needed files in the /Data/ folder.
 % Returns five column vectors with results from each unique test.
 
-% enc2m = 1/560/100; % Y in m
-enc2m = 1;
+enc2m = 1; %1/560/100; % Y in m
+
 % all_parameters = zeros(5,5,3); % Old matrix return method
 
 t_0 = []; y_0 = []; t_n = []; y_n = []; y_inf = []; n_out = [];
 m = test_id;
-
 for n = 1:5 % Trials of same test
     
     eval(sprintf('data = readecp("Data/test_%d_%d.csv");',m,n));
@@ -25,7 +24,13 @@ for n = 1:5 % Trials of same test
     end
 
     t = data(:,2);
-    y = enc2m * data(:,4);
+
+    % For test 3, take y data as average of both encoder datas
+    if m == 3
+        y = enc2m * mean([data(:,4),data(:,5)],2);
+    else
+        y = enc2m * data(:,4);
+    end
 
     % Flip signs for positive convention for tests 2, 3
     if m > 1
@@ -50,14 +55,12 @@ for n = 1:5 % Trials of same test
     y_max = max(y);
     amplitude = y_max - y_inf_n;
 
-    % Filter out minor peaks for test 1
-    peak_threshold = 0.03;
-    if m == 1
-        for k = length(y_peaks):-1:1
-            if y_peaks(k) < y_inf_n + peak_threshold * amplitude
-                y_peaks(k) = [];
-                t_peaks(k) = [];
-            end
+    % Filter out minor peaks for tests (Custom thresholds per test)
+    peak_threshold = [0.05,0,0];
+    for k = length(y_peaks):-1:1
+        if y_peaks(k) < y_inf_n + peak_threshold(m) * amplitude
+            y_peaks(k) = [];
+            t_peaks(k) = [];
         end
     end
 
@@ -72,12 +75,13 @@ for n = 1:5 % Trials of same test
 %         t_n = t_peaks(end); y_n = y_peaks(end);
 
     % Uncomment for visual representation of analysis
-%         figure(1);
-%         hold off;
-%         plot(t,y);
-%         hold on;
-%         plot(t_peaks,y_peaks,'r.','MarkerSize',10);
-%         title(sprintf('Test Setup %d, Trial %d',m,n));
-%         ylabel('Position [m]'); xlabel('Time [s]');
-%         w = waitforbuttonpress;
+        figure(1);
+        hold off;
+        plot(t,y);
+        hold on;
+        plot(t_peaks,y_peaks,'r.','MarkerSize',10);
+        title(sprintf('Test Setup %d, Trial %d',m,n));
+        ylabel('Position [m]'); xlabel('Time [s]');
+        t_peaks
+        w = waitforbuttonpress;
 end
