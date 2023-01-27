@@ -7,13 +7,13 @@ format long;
 test_num = 1; % Hold Sys1 and occilate Sys2
 U = .5; % N (Val of step size)
 [t0,y0,t1,y1,y_ss,n] = AutoAnalysis(test_num);
-[k2, m2, d2] = DOF1EvalPram(t0, t1, y0, y1, y_ss, U, n);
+[k2, m2, d2] = DOF1EvalParam(t0, t1, y0, y1, y_ss, U, n);
 
 % Experiment 2 to find Sys1 Parameters
 test_num = 2; % Hold Sys2 and occilate Sys1
 U = 0.1; % N (Val of step size)
 [t0,y0,t1,y1,y_ss,n] = AutoAnalysis(test_num);
-[k1, m1, d1] = DOF1EvalPram(t0, t1, y0, y1, y_ss, U, n);
+[k1, m1, d1] = DOF1EvalParam(t0, t1, y0, y1, y_ss, U, n);
 k1.avg = k1.avg - k2.avg;
 
 disp("Experimentally Determined Parameters: SYS1")
