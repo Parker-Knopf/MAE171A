@@ -7,14 +7,14 @@ format long;
 test_num = 3; % 2 DOF -> 1 DOF Approximation
 U = .5; % V (Val of step size)
 [t0,y0,t1,y1,y_ss,n] = AutoAnalysis(test_num);
-[k1, m_e, d_e] = DOF1EvalPram(t0, t1, y0, y1, y_ss, U, n);
+[k1, m_e, d_e] = DOF1EvalParam(t0, t1, y0, y1, y_ss, U, n);
 
 %% Experiment 2 to find Sys1 Paramters (1DOF holding Sys2)
 % k_eff = k1 + k2, m_eff = m1, d_eff = d1
 test_num = 2;
 U = 0.5; % V (Val of step size)
 [t0,y0,t1,y1,y_ss,n] = AutoAnalysis(test_num);
-[k_e, m1, d1] = DOF1EvalPram(t0, t1, y0, y1, y_ss, U, n);
+[k_e, m1, d1] = DOF1EvalParam(t0, t1, y0, y1, y_ss, U, n);
 
 k2.avg = k_e.avg - k1.avg;
 m2.avg = m_e.avg - m1.avg;
