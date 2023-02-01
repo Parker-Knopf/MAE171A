@@ -25,12 +25,7 @@ for n = 1:5 % Trials of same test
 
     t = data(:,2);
 
-    % For test 3, take y data as average of both encoder datas
-    if m == 3
-        y = enc2m * mean([data(:,4),data(:,5)],2);
-    else
-        y = enc2m * data(:,4);
-    end
+    y = enc2m * data(:,4);
 
     % Flip signs for positive convention for tests 2, 3
     if m > 1
@@ -69,12 +64,7 @@ for n = 1:5 % Trials of same test
     t_n = [t_n; t_peaks(end)]; y_n = [y_n; y_peaks(end)];
     y_inf = [y_inf; y_inf_n]; n_out = [n_out length(t_peaks)-1];
 
-%       Old method of saving variables
-%         all_parameters(:,n,m) = [t_0 y_0 t_n y_n y_inf];
-%         t_0 = t_peaks(1); y_0 = y_peaks(1);
-%         t_n = t_peaks(end); y_n = y_peaks(end);
-
-    % Uncomment for visual representation of analysis
+%    Uncomment for visual representation of analysis
 %         figure(1);
 %         hold off;
 %         plot(t,y);
