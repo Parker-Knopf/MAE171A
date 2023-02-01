@@ -13,10 +13,10 @@ points and returns k,m,d values of a 1DOF system.
         b_wn = 1 / (tn(i) - t0(i)) * log((y0(i) - y_ss(i)) / (yn(i) - y_ss(i)));
         w_n = sqrt(w_d^2 + b_wn^2);
         
-        b = b_wn / w_n; 
-    
+        b = b_wn / w_n;
+
         k(i) = U / y_ss(i);
-        m(i) = w_n^2 / k(i);
+        m(i) = k(i) / w_n^2;
         d(i) = 2 * b * sqrt(k(i)*m(i));
     end
 
