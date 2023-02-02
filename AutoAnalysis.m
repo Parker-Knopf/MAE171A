@@ -59,10 +59,14 @@ for n = 1:5 % Trials of same test
         end
     end
 
+    % Find max peak for t_0, y_0
+    [y_max_peak, index_max_peak] = max(y_peaks);
+    t_max_peak = t_peaks(index_max_peak);
+
     % Ready parameters for return
-    t_0 = [t_0; t_peaks(1)]; y_0 = [y_0; y_peaks(1)];
+    t_0 = [t_0; t_max_peak]; y_0 = [y_0; y_max_peak];
     t_n = [t_n; t_peaks(end)]; y_n = [y_n; y_peaks(end)];
-    y_inf = [y_inf; y_inf_n]; n_out = [n_out length(t_peaks)-1];
+    y_inf = [y_inf; y_inf_n]; n_out = [n_out length(t_peaks)-index_max_peak];
 
 %    Uncomment for visual representation of analysis
 %         figure(1);
