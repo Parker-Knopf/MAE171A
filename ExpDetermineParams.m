@@ -29,10 +29,10 @@ U = (2*560) * (k2.avg); % V (Val of step size)
 
 disp("Experimentally Determined Parameters: SYS1")
 fprintf("Mass: %.8f\n", m1.avg);
-fprintf("Spring Constant: %.8f\n", k1.avg)
-fprintf("Damping Ratio: %.8f\n\n", d1.avg)
+fprintf("Damping Ratio: %.8f\n", d1.avg)
+fprintf("Spring Constant: %.8f\n\n", k1.avg)
 
 disp("Experimentally Determined Parameters: SYS2")
 fprintf("Mass: %.8f\n", m2.avg);
-fprintf("Spring Constant: %.8f\n", k2.avg)
-fprintf("Damping Ratio: %.8f\n\n", d2.avg)
+fprintf("Damping Ratio: %.8f\n", d2.avg)
+fprintf("Spring Constant: %.8f\n\n", k2.avg)
