@@ -24,18 +24,14 @@ G2 = tf((b0) / (a4*s^4 + a3*s^3 + a2*s^2 + a1*s + a0));
 
 L1 = G1;
 figure(1);
-rlocus(L1);
+rlocus(L1)
 
-kp = 0.5;
+kp = 0.0045;
 
 L2 = s / (G1 + kp);
 figure(2);
-rlocus(L2);
+rlocus(L2)
 
-kd = .3;
+kd = .02;
 
-L3 = 1 / (s* (G1 + kp + kd*s));
-figure(3);
-rlocus(L3);
-
-ki = .5;
+L3 = 1 / (s* ())
