@@ -26,13 +26,15 @@ L1 = G1;
 figure(1);
 rlocus(L1);
 
+%kp = 0.05
 kp = 0.5;
 
 L2 = s / (G1 + kp);
 figure(2);
 rlocus(L2);
 
-kd = .3;
+%kd = 0.004
+kd = .03;
 
 L3 = 1 / (s* (G1 + kp + kd*s));
 figure(3);
