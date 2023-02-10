@@ -5,7 +5,7 @@ clc;
 clear all;
 close all;
 
-mydata=readmatrix('DICe_solution_19.txt');
+mydata=readmatrix('Data/DICe_solution_19.txt');
 
 strain_yy=mydata(:,12);
 xpos=mydata(:,2);
