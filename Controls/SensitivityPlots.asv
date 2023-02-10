@@ -1,0 +1,49 @@
+clear all; clc; close all;
+
+filepaths = ["Data/Closed_Loop/closed_loop_less_weight1.mat";
+             "Data/Closed_Loop/closed_loop_pid.mat";
+             "Data/Closed_Loop/closed_loop_more_weight1.mat";
+             "Data/Closed_Loop/closed_loop_less_weight2.mat";
+             "Data/Closed_Loop/closed_loop_pid.mat";
+             "Data/Closed_Loop/closed_loop_less_weight2.mat"];
+
+for i = 1:6
+    filepath = filepaths(i);
+    data = load(filepath).data;
+    final_index = find(data(:,3) == ref,1,'last');
+    data = data(1:final_index,:);
+    t = data(:,2);
+    y = data(:,4);
+
+    switch i % Determine which figure to plot (1 for mass 1, 2 for mass 2)
+        case {1,2,3}
+            subplot(1,2,1);
+        case {4,5,6}
+            subplot(1,2,2);
+    end
+
+    switch i % Determine line style
+        case {1,4} % For less weight
+            linestyle = 'r--';
+        case {2,5} % For default weight
+            linestyle = 'k-';
+        case {3,6} % For more weight
+            linestyle = 'b--';
+    end
+
+    plot(t,y,linestyle,'LineWidth',2); hold on;
+
+end
+
+data = load('Data/Closed_Loop/closed_loop_pid.mat').data;
+ref = data(1,3);
+final_index = find(data(:,3) == ref,1,'last');
+data = data(1:final_index,:);
+t = data(:,2);
+y = data(:,4);
+plot(t,y,'k-','LineWidth',2); hold on;
+
+title('PID Controller Step Response, r(t) = 1000 counts');
+xlabel('Time [s]'); ylabel('Position [counts]');
+legend('Experimental','Simulated','Location','southeast');
+set(gca,'FontSize',14);
