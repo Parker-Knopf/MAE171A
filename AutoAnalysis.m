@@ -11,7 +11,8 @@ t_0 = []; y_0 = []; t_n = []; y_n = []; y_inf = []; n_out = [];
 m = test_id;
 for n = 1:5 % Trials of same test
     
-    eval(sprintf('data = readecp("Data/test_%d_%d.csv");',m,n));
+    filename = sprintf('Data/Open_Loop/test_%d_%d.csv',m,n);
+    data = readecp(filename);
 
     % Cut last third of data for test 1 (Some error near end)
     if m == 1
@@ -78,4 +79,5 @@ for n = 1:5 % Trials of same test
 %         ylabel('Position [m]'); xlabel('Time [s]');
 %         t_peaks
 %         w = waitforbuttonpress;
+end
 end
