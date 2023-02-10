@@ -1,0 +1,9 @@
+clear all; clc; close all;
+
+files_ol = dir('Data\Open_Loop\*.csv')
+
+for file = files_ol'
+    file_name = ['Data\Open_Loop\' file.name];
+    data = readecp(file_name);
+    mat_file_name = file.name;
+    ma
