@@ -24,12 +24,12 @@ for i = 1:6
     end
 
     switch i % Determine line style
-        case {1,4} % For less weight
-            linestyle = 'r--';
-        case {2,5} % For default weight
+        case {1,4} % For less mass
+            linestyle = 'r-';
+        case {2,5} % For default mass
             linestyle = 'k-';
-        case {3,6} % For more weight
-            linestyle = 'b--';
+        case {3,6} % For more mass
+            linestyle = 'b-';
     end
 
     plot(t,y,linestyle,'LineWidth',2); hold on;
@@ -40,7 +40,7 @@ for i = 1:2
     subplot(2,1,i);
     title(sprintf('Mass %d Sensitivity Analysis of Closed Loop PID Control',i));
     xlabel('Time [s]'); ylabel('Position [counts]');
-    legend('Less Weight','Default Weight','More Weight','Location','southeast');
+    legend('Less mass','Original mass','More mass','Location','southeast');
     set(gca,'FontSize',14);
     ylim([900 1000]);
 end

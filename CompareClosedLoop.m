@@ -26,7 +26,7 @@ G3 = tf([b2 b1 b0],[a4 a3 a2 a1 a0]);
 D = tf([kd kp ki],[1 0]);
 T = (G3*D)/(1+G3*D);
 [y_step, t_step] = step(ref*T,t(end));
-plot(t_step,y_step,'r--','LineWidth',2);
+plot(t_step,y_step,'r:','LineWidth',2);
 
 title('PID Controller Step Response, r(t) = 1000 counts');
 xlabel('Time [s]'); ylabel('Position [counts]');

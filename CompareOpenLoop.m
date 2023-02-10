@@ -94,11 +94,15 @@ for m = 1:3 % Set test id
         y_points = [y_max_peak;y_peaks(end);y_plot(floor(end*0.95))];
 
        % Uncomment for visual representation of analysis
-        figure(m);
+        if m > 2
+            figure(m)
+        else
+            subplot(1,2,m);
+        end
         plot(t_plot,y_plot,'k-','LineWidth',2);
         hold on;
         [y_step, t_step] = step(G_ar(m),2.5);
-        plot(t_step,y_step,'r--','LineWidth',2)
+        plot(t_step,y_step,'r:','LineWidth',2)
         plot(t_points,y_points,'r.','MarkerSize',10);
         xlim([t_step(1) t_step(end)]);
         title(sprintf('Step Response, Experiment %d',exp_num));
