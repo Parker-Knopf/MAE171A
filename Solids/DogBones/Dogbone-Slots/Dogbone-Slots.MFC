@@ -1,0 +1,16 @@
+[StartTime]
+Dogbone-Slots.MFC=2s
+[SolverState]
+Dogbone-Slots.MFC=2
+[MainFrame]
+Dogbone-Slots.MFC=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPMADAAAAADLBAAAAAEHEAAAAAGICAAAAA
+[ShowMin]
+Dogbone-Slots.MFC=No
+[SolverType]
+Dogbone-Slots.MFC=Linear Analysis
+[StudyType]
+Dogbone-Slots.MFC=0
+[StudyName]
+Dogbone-Slots.MFC=Slots
+[Solver]
+Dogbone-Slots.MFC=Sparse

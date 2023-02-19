@@ -1,0 +1,16 @@
+[StartTime]
+Dogbone-Hash.MFC=2s
+[SolverState]
+Dogbone-Hash.MFC=2
+[MainFrame]
+Dogbone-Hash.MFC=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPMADAAAAADLBAAAAAEHEAAAAAGICAAAAA
+[ShowMin]
+Dogbone-Hash.MFC=No
+[SolverType]
+Dogbone-Hash.MFC=Linear Analysis
+[StudyType]
+Dogbone-Hash.MFC=0
+[StudyName]
+Dogbone-Hash.MFC=Hash
+[Solver]
+Dogbone-Hash.MFC=Sparse

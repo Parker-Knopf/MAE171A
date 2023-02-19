@@ -1,0 +1,16 @@
+[StartTime]
+Dogbone-Rectangle.MFC=1s
+[SolverState]
+Dogbone-Rectangle.MFC=2
+[MainFrame]
+Dogbone-Rectangle.MFC=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPMADAAAAADLBAAAAAEHEAAAAAGICAAAAA
+[ShowMin]
+Dogbone-Rectangle.MFC=No
+[SolverType]
+Dogbone-Rectangle.MFC=Linear Analysis
+[StudyType]
+Dogbone-Rectangle.MFC=0
+[StudyName]
+Dogbone-Rectangle.MFC=Rectangle
+[Solver]
+Dogbone-Rectangle.MFC=Sparse

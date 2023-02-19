@@ -1,0 +1,16 @@
+[StartTime]
+Dogbone-Ellipse.MFC=1s
+[SolverState]
+Dogbone-Ellipse.MFC=2
+[MainFrame]
+Dogbone-Ellipse.MFC=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPMADAAAAADLBAAAAAEHEAAAAAGICAAAAA
+[ShowMin]
+Dogbone-Ellipse.MFC=No
+[SolverType]
+Dogbone-Ellipse.MFC=Linear Analysis
+[StudyType]
+Dogbone-Ellipse.MFC=0
+[StudyName]
+Dogbone-Ellipse.MFC=Ellipse
+[Solver]
+Dogbone-Ellipse.MFC=Sparse
