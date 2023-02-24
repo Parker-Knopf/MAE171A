@@ -97,8 +97,8 @@ for m = 1:3 % Set test id
         figure(m);
         plot(t_plot,y_plot,'k-','LineWidth',2);
         hold on;
-        t_step = t_plot(1):mean(diff(t_plot)):t_plot(end);
-        [y_step, t_step] = step(U(m)*G_ar(m),t_step);
+        t_step = t_plot(1):
+        [y_step, t_step] = step(U(m)*G_ar(m));
         plot(t_step,y_step,'r:','LineWidth',2)
         plot(t_points,y_points,'r.','MarkerSize',10);
         xlim([t_step(1) t_step(end)]);
@@ -107,8 +107,8 @@ for m = 1:3 % Set test id
         legend('Experimental','Simulated','Location','southeast')
         set(gca,'FontSize',14);
 
-        error = abs(y_step-y_plot)./y_plot;
-        avgerror(m) = mean(error(2:end))*100
+        error = abs(y_step-y_plot)./y_step;
+        avgerror = mean(error)
 
 % 
 %         % Plot from one test

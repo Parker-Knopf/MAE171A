@@ -29,7 +29,7 @@ T = (D*G3)/(1+G3*D);
 [y_step, t_step] = step(ref*T,t(end));
 plot(t_step,y_step,'r:','LineWidth',2);
 
-title('PID Controller Step Response, r(t) = 1000 counts');
+%title('PID Controller Step Response, r(t) = 1000 counts');
 xlabel('Time [s]'); ylabel('Position [counts]');
 legend('Experimental','Simulated','Location','southeast');
 set(gca,'FontSize',14);
