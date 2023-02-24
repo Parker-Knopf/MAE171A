@@ -49,16 +49,47 @@ title('SS Curve for Test 3')
 
 % Test 3 fractured before unloading
 
-for i = 0:19
+% Preallocation 
+
+x_1 = zeros(2295,19)
+x_1disp = zeros(2295,19)
+y_1 = zeros(2295,19)
+y_1disp = zeros(2295,19)
+
+x_2 = zeros(3273,19)
+x_2disp = zeros(3273,19)
+y_2 = zeros(3273,19)
+y_2disp = zeros(3273,19)
+
+% Epsilon_xx = zeros(3273,18)
+
+for i = 0:19 % number of csv files for each test
 
     if (i < 10)
         n = "0"+ num2str(i);
     else
         n = num2str(i);
     end
-    t_1(i+1) = importdata(sprintf("Test 1/results/DICe_solution_%s.csv",n));
-%     test_1(i+1).data = test_1(:,1)
-    t_2(i+1) = importdata(sprintf("Test 2/results/DICe_solution_%s.csv",n));
+
+    t_1(i+1) = importdata(sprintf("Test 1/results/DICe_solution_%s.csv",n)); % Test 1
+    x_1(: , i+1) = t_1(i+1).data(:,2) % grab x cordinate of each point from test 1
+    x_1disp(:, i+1) = t_1(i+1).data(:,4) % grab x displacement data from test 1
+    y_1(: , i+1) = t_1(i+1).data(:,3) % grab y cordinate from each point from test 1
+    y_1disp(: , i+1) = t_1(i+1).data(:,5) % grab y displacement data from test 1
+
+    t_2(i+1) = importdata(sprintf("Test 2/results/DICe_solution_%s.csv",n)); % Test 2
+    x_2(: , i+1) = t_2(i+1).data(:,2)
+    x_2disp(: , i+1) = t_2(i+1).data(:,4)
+    y_2(: , i+1) = t_2(i+1).data(:,3)
+    y_2disp(: , i+1) = t_2(i+1).data(:,5)
+
+
+% for j = 1:length(x_1disp)
+%     Epsilon_xx(: , i+1) = ( x_1disp(:, i+1) - x_1disp(:, i) ) ./ x_1disp(:, i)
+% 
+% end
+%     Epsilon_yy(: , i+1)
+    
 end
 
 
