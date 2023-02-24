@@ -12,6 +12,10 @@ m2=1.308e-5;         % Mass/inertia m2
 d2=1.6065e-4;         % Damping that connects m2 to ground 
 k2=1.278e-3;         % Spring that connects m1 and m2
 
+m1 = 5.016e-06; m2 = 5.405e-06;
+d1 = 4.646e-05; d2 = 1.344e-05;
+k1 = 0.001759; k2 = 0.001333;
+
 % m1=1e-6;         % Mass/inertia m1                     
 % d1=1e-5;         % Damping that connects m1 to ground  
 % k1=2e-4;         % Spring that connect m1 to ground

@@ -1,8 +1,8 @@
 clear all; clc; close all;
 
-m1 = 4.57e-6; m2 = 1.308e-5;
-k1 = 1.813e-3; k2 = 1.278e-3;
-d1 = 5.61e-5; d2 = 1.6065e-4;
+m1 = 5.016e-06; m2 = 5.405e-06;
+d1 = 4.646e-05; d2 = 1.344e-05;
+k1 = 0.001759; k2 = 0.001333;
 
 b2 = m2; b1 = d2; b0 = k2;
 a4 = m1*m2; a3 = m1*d2 + m2*d1;
@@ -14,10 +14,10 @@ G2 = tf(1,[m1 d1 k1+k2]);
 G3 = tf([b2 b1 b0],[a4 a3 a2 a1 a0]);
 
 G_ar = [G1;G2;G3];
-
+U = [2 * (560) * (k2); 0.5; 0.5];
 t_0 = []; y_0 = []; t_n = []; y_n = []; y_inf = []; n_out = [];
 for m = 1:3 % Set test id
-    for n = 1 % Trials of same test
+    for n = 2 % Trials of same test
 
         switch m % Find Experiment # used in the report from test_id (they're different)
             case 1
@@ -94,14 +94,10 @@ for m = 1:3 % Set test id
         y_points = [y_max_peak;y_peaks(end);y_plot(floor(end*0.95))];
 
        % Uncomment for visual representation of analysis
-        if m > 2
-            figure(m)
-        else
-            subplot(1,2,m);
-        end
+        figure(m);
         plot(t_plot,y_plot,'k-','LineWidth',2);
         hold on;
-        [y_step, t_step] = step(G_ar(m),2.5);
+        [y_step, t_step] = step(U(m)*G_ar(m),2.5);
         plot(t_step,y_step,'r:','LineWidth',2)
         plot(t_points,y_points,'r.','MarkerSize',10);
         xlim([t_step(1) t_step(end)]);
@@ -109,6 +105,16 @@ for m = 1:3 % Set test id
         ylabel('Position [counts]'); xlabel('Time [s]');
         legend('Experimental','Simulated','Location','southeast')
         set(gca,'FontSize',14);
+
+% 
+%         % Plot from one test
+%         [t0,y0,tn,yn,y_ss,n0] = AutoAnalysis(m);
+%         [k0, m0, d0] = DOF1EvalParam(t0, tn, y0, yn, y_ss, U(m), n0);
+%         k0 = k0.avg; m0 = m0.avg; d0 = d0.avg;
+%         C = 1/k0; wn = sqrt(k0/m0); B = d0/2/sqrt(k0*m0);
+%         wd = wn*sqrt(1-B^2); phi = atan((1-B^2)/B);
+%         f_actual = @(t) C*U(m)*(1-exp(-B*wn*t)*sin(wd*t + phi));
+%         fplot(f_actual,[0 3]);
     end
 end
 

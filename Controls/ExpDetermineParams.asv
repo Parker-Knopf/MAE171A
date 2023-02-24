@@ -11,7 +11,7 @@ format long;
 %% Experiment 1 to find Sys1 Parameters (Lumped Model Analysis)
 % m_eff = m1 + m2, k_eff = k1
 test_num = 3; % 2 DOF -> 1 DOF Approximation
-U = [0.5*ones(1,7), 0.75*ones(1,9)]; % V (Val of step size)
+U = 0.5*ones(1,7), 0.75*ones; % V (Val of step size)
 [t0,y0,t1,y1,y_ss,n] = AutoAnalysis(test_num);
 [k1, m_e, d_e] = DOF1EvalParam(t0, t1, y0, y1, y_ss, U, n);
 
