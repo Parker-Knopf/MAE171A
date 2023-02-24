@@ -2,9 +2,9 @@ clear all; clc; close all;
 
 kp = 0.5; kd = 0.03; ki = 0.5;
 
-m1 = 4.57e-6; m2 = 1.308e-5;
-k1 = 1.813e-3; k2 = 1.278e-3;
-d1 = 5.61e-5; d2 = 1.6065e-4;
+m1 = 5.016e-06; m2 = 5.405e-06;
+d1 = 4.646e-05; d2 = 1.344e-05;
+k1 = 0.001759; k2 = 0.001333;
 
 b2 = m2; b1 = d2; b0 = k2;
 a4 = m1*m2; a3 = m1*d2 + m2*d1;
@@ -24,11 +24,12 @@ plot(t,y,'k-','LineWidth',2); hold on;
 
 G3 = tf([b2 b1 b0],[a4 a3 a2 a1 a0]);
 D = tf([kd kp ki],[1 0]);
-T = (G3*D)/(1+G3*D);
+D = D * 1;
+T = (D*G3)/(1+G3*D);
 [y_step, t_step] = step(ref*T,t(end));
 plot(t_step,y_step,'r:','LineWidth',2);
 
-title('PID Controller Step Response, r(t) = 1000 counts');
+%title('PID Controller Step Response, r(t) = 1000 counts');
 xlabel('Time [s]'); ylabel('Position [counts]');
 legend('Experimental','Simulated','Location','southeast');
 set(gca,'FontSize',14);

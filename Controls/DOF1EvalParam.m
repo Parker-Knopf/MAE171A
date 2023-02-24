@@ -1,4 +1,4 @@
-function [k_val, m_val, d_val] = DOF1EvalParam(t0, tn, y0, yn, y_ss, U, n)
+function [k_val, m_val, d_val] = DOF1EvalParam(t0, tn, y0, yn, y_ss, U_ar, n)
 %{
 Takes two points, steday state value, step input, and wavelength between
 points and returns k,m,d values of a 1DOF system.
@@ -8,6 +8,7 @@ points and returns k,m,d values of a 1DOF system.
     m = zeros(len, 1);
     d = zeros(len, 1);
     for i = 1:length(y_ss)
+        U = U_ar(i);
         
         w_d = 2 * pi * n(i) / (tn(i) - t0(i));
         b_wn = 1 / (tn(i) - t0(i)) * log((y0(i) - y_ss(i)) / (yn(i) - y_ss(i)));

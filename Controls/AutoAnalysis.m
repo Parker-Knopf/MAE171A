@@ -9,7 +9,14 @@ enc2m = 1; %1/560/100; % Y in m
 
 t_0 = []; y_0 = []; t_n = []; y_n = []; y_inf = []; n_out = [];
 m = test_id;
-for n = 1:5 % Trials of same test
+
+if m == 3
+    iterations = 16;
+else
+    iterations = 5;
+end
+
+for n = 1:iterations % Trials of same test
     
     filename = sprintf('Data/Open_Loop/test_%d_%d.csv',m,n);
     data = readecp(filename);
@@ -54,7 +61,7 @@ for n = 1:5 % Trials of same test
     % Filter out minor peaks for tests (Custom thresholds per test)
     peak_threshold = [0.05,0,0];
     for k = length(y_peaks):-1:1
-        if y_peaks(k) < y_inf_n + peak_threshold(m) * amplitude
+        if abs(y_peaks(k) - y_inf_n) < peak_threshold(m) * amplitude
             y_peaks(k) = [];
             t_peaks(k) = [];
         end
@@ -64,20 +71,35 @@ for n = 1:5 % Trials of same test
     [y_max_peak, index_max_peak] = max(y_peaks);
     t_max_peak = t_peaks(index_max_peak);
 
+    switch m
+        case 1
+            t_0 = [t_0; t_max_peak]; y_0 = [y_0; y_max_peak];
+            t_n = [t_n; t_peaks(5)]; y_n = [y_n; y_peaks(5)];
+            y_inf = [y_inf; y_inf_n]; n_out = [n_out 4];
+        case 2
+            t_0 = [t_0; t_max_peak]; y_0 = [y_0; y_max_peak];
+            t_n = [t_n; t_peaks(2)]; y_n = [y_n; y_peaks(2)];
+            y_inf = [y_inf; y_inf_n]; n_out = [n_out 1];
+        case 3
+            t_0 = [t_0; t_max_peak]; y_0 = [y_0; y_max_peak];
+            t_n = [t_n; t_peaks(end)]; y_n = [y_n; y_peaks(end)];
+            y_inf = [y_inf; y_inf_n]; n_out = [n_out 1];
+    end
     % Ready parameters for return
     t_0 = [t_0; t_max_peak]; y_0 = [y_0; y_max_peak];
     t_n = [t_n; t_peaks(end)]; y_n = [y_n; y_peaks(end)];
     y_inf = [y_inf; y_inf_n]; n_out = [n_out length(t_peaks)-index_max_peak];
 
-%    Uncomment for visual representation of analysis
-%         figure(1);
-%         hold off;
-%         plot(t,y);
-%         hold on;
-%         plot(t_peaks,y_peaks,'r.','MarkerSize',10);
-%         title(sprintf('Test Setup %d, Trial %d',m,n));
-%         ylabel('Position [m]'); xlabel('Time [s]');
-%         t_peaks
-%         w = waitforbuttonpress;
+  % Uncomment for visual representation of analysis
+        figure(1);
+        hold off;
+        plot(t,y);
+        hold on;
+        plot(t_peaks,y_peaks,'r.','MarkerSize',10);
+        title(sprintf('Test Setup %d, Trial %d',m,n));
+        ylabel('Position [m]'); xlabel('Time [s]');
+        t_peaks
+        drawnow();
+        w = waitforbuttonpress;
 end
 end

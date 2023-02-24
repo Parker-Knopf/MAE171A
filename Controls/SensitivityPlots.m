@@ -38,7 +38,7 @@ end
 
 for i = 1:2
     subplot(2,1,i);
-    title(sprintf('Mass %d Sensitivity Analysis of Closed Loop PID Control',i));
+    %title(sprintf('Mass %d Sensitivity Analysis of Closed Loop PID Control',i));
     xlabel('Time [s]'); ylabel('Position [counts]');
     legend('Less mass','Original mass','More mass','Location','southeast');
     set(gca,'FontSize',14);
