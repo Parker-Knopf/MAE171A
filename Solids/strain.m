@@ -8,7 +8,7 @@ function e = strain(test, frame, dim)
         frame = num2str(frame);
     end
 
-    dir = sprintf("Test%d/results/DICe_solution_%s.csv", test, frame);
+    dir = sprintf("Data/Test %d/results/DICe_solution_%s.csv", test, frame);
     data = importdata(dir);
     if (dim == 'x')
         e.cord = data.data(:,2);
@@ -19,4 +19,7 @@ function e = strain(test, frame, dim)
     else
         e = NaN;
     end
+
 end
+
+

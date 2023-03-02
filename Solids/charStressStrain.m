@@ -3,7 +3,7 @@ function params = charStressStrain(test, l0, a)
     hold on;
     offset = .002;
 
-    dir = sprintf("PMMA_dogbone_test%d", test);
+    dir = sprintf("Data/PMMA_dogbone_test%d", test);
     table = table2array(readtable(dir));
     data = table(4:end, 2:end);
 

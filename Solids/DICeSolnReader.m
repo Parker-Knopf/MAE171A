@@ -5,6 +5,7 @@ clc;
 clear all;
 close all;
 
+
 mydata=readmatrix('Data/Test 2/results/DICe_solution_10.txt');
 
 strain_yy=mydata(:,12);

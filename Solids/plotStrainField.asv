@@ -1,0 +1,37 @@
+function [] = plotStrainField(test, frame, dim)
+
+if (frame < 10)
+        frame = "0"+ num2str(frame);
+    else
+        frame = num2str(frame);
+end
+
+
+    dir = sprintf("Test %d/results/DICe_solution_%s.csv", test, frame);
+    data = readmatrix(dir);
+
+if (dim == 'x')
+         = data.data(:,2);
+        .disp = data.data(:,4);
+        figure(01)
+
+    elseif (dim == 'y')
+        e.cord = data.data(:,3);
+        e.disp = data.data(:,5);
+    else
+        e = NaN;
+end
+
+scatter(xpos,ypos,[],strain_yy,'filled')
+colorbar
+xlabel('x')
+ylabel('y')
+set(gca,'fontsize',20,'linewidth',2)
+
+
+end
+
+
+
+
+
