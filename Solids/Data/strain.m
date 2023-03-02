@@ -1,4 +1,5 @@
 function e = strain(test, frame, dim)
+    % Pull cordinate and displacement data from DICe
 
     % Frame to string for Directory
     if (frame < 10)
