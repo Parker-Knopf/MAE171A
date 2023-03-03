@@ -21,5 +21,3 @@ function e = strain(test, frame, dim)
     end
 
 end
-
-

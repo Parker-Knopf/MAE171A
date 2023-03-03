@@ -1,4 +1,4 @@
-function params = charStressStrain(test, l0, a)
+function params = charStressStrain(test, l0, a, s0, e_data)
     % test ID, intial length, area of interest
     hold on;
     offset = .002;
@@ -7,31 +7,24 @@ function params = charStressStrain(test, l0, a)
     table = table2array(readtable(dir));
     data = table(4:end, 2:end);
 
-    stress = data(:, 3) .* 1000 ./ a;
+    stress = data(:, 3) .* 1000 ./ a / 10^6;
     strain = data(:, 2) ./ 1000 ./ l0;
 
-    error = max(stress) / 80;
+    error = max(stress) / e_data;
     for i = 1:length(strain)
-        p = polyfit(strain(1:i+3), stress(1:i+3), 1);
-        if (leastSquares(strain(1:i+3), stress(1:i+3), i, p) > error)
+        p = polyfit(strain(s0:i+3), stress(s0:i+3), 1);
+        if (leastSquares(strain(s0:i+3), stress(s0:i+3), i, p) > error)
             params.sy = stress(i);
-            labelTxt(strain(i),stress(i), 'Sy', params.sy, .005, 0)
-            plot(strain(i),stress(i), '.', 'MarkerSize', 20, 'color', 'blue')
+            params.sy_e = strain(i);
             break
         end
     end
     params.e = p(1);
     params.sut = max(stress);
-    
-    plot(strain, stress,'color', 'blue')
-    xlabel("Strain")
-    ylabel("Stress (Pa)")
-    labelTxt(strain(find(stress==max(stress), 1)), max(stress), 'Sut', params.sut, -.01, 2*10^6)
-    plot(strain(find(stress==max(stress), 1)),max(stress), '.', 'MarkerSize', 20, 'color', 'blue')
-end
+    params.sut_e = strain(find(stress==max(stress), 1));
 
-function txt = labelTxt(x, y, param, val, dx, dy)
-    text(x + dx, y + dy, sprintf('%s: %.2f MPa', param, val/10^6), 'Color','black','FontSize',14)
+    params.strain = strain;
+    params.stress = stress;
 end
 
 function e = leastSquares(strain, stress, i, p)
