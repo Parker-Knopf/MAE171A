@@ -1,8 +1,10 @@
-flowSpeeds(21, 0)
+flowSpeeds(20, 1)
 
-function v = flowSpeeds(percentFlow, plots)
+function v_avg = flowSpeeds(percentFlow, plots)
 
-r = linspace(0, 1.2, 4);
+r_outter = 1.2;
+in2m = 0.0254;
+r = linspace(0, r_outter, 4) .* in2m;
 percent = linspace(0, 100, 6);
 
 data = table2array(readtable("Calibration/Flow Calibration Table.csv"));
@@ -24,13 +26,25 @@ else
     v_data = ldata(:) + (hdata(:) - ldata(:)) .* (percentFlow - percent(lBound)) ./ (percent(hBound) - percent(lBound));
 end
 
-
-[c, ~, ~] = polyfit(r, v_data, 2);
-
-r = linspace(0, 1.2, 40);
+c = polyfit(r, v_data, 2);
 v_profile = @(x) c(1).*x.^2 + c(2).*x + c(3);
 
-plot(r, v_profile(r));
+if (plots)
+    u2mm = 1000;
+    r_plot = linspace(0, r_outter, 40) .* in2m;
+    
+    hold on;
+    plot(r_plot*u2mm, v_profile(r_plot));
+    title("Velocity Flow vs Radial Pipe Axis")
+    ylabel("Velocity (m/s)")
+    xlabel("Radial Axis (mm)")
+    xlim([r(1)*u2mm, r(end)*u2mm])
+end
 
 %% Return avg value with integral of velocity time r all divided by area
+fuc = @(x) x .* v_profile(x);
+q = 2 * pi * integral(fuc, r(1), r(end));
+
+v_avg = q / (pi * r(end)^2);
+
 end
