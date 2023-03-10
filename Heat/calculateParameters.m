@@ -1,4 +1,4 @@
-function [h, Nu, Re] = calculateParametersFromData(tempC, flowSpeedPct, longFlag)
+function [h, Nu, Re] = calculateParameters(tempC, flowSpeedPct, longFlag)
 %CALCULATEPARAMETERSFROMDATA Calculates the heat transfer coefficient,
 %Nusselt number, and Reynolds number, given temperature in Celsius,
 %percentage flow speed, and whether or not it is a long experiment (false
