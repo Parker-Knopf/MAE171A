@@ -1,6 +1,6 @@
 %% Paramters
 
-v = 2.317*10^5; % (kinematic viscosity) m^2/s
+v = 2.317*10^-5; % (kinematic viscosity) m^2/s
 k = 3.186*10^-2; % (thermal conductivity) W/(mK)
 p = 0.9413; % (density) kg/m^3
 c = 1010.6; % (heat capacity) J/(kgK)

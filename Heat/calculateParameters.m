@@ -6,7 +6,7 @@ function [h, Nu, Re] = calculateParameters(tempC, flowSpeedPct, longFlag)
 
 %% Define constants
 L = 0.007; % Distance from plate to end of duct in [m]
-nu = 2.317*10^5; % kinematic viscosity of air in [m^2/s]
+nu = 2.317*10^-5; % kinematic viscosity of air in [m^2/s]
 p = 0.9413; % density of air in [kg/m^3]
 mu = p*nu; % dynamic viscosity of air in [kg/(m s)]
 c = 1010.6; % heat capacity of air in [J/(kg K)]
