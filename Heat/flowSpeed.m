@@ -1,4 +1,4 @@
-function v_avg = flowSpeed(percentFlow, plots, varargin)
+function [v_avg, q] = flowSpeed(percentFlow, plots, varargin)
 
 r_outter = 1.2;
 in2m = 0.0254;
@@ -40,13 +40,13 @@ if (plots)
     end
 
     if (length(varargin) >= 2 && varargin{2}==1)
-        v_profile = @(x) v_profile(x) ./ max(v_profile(r_plot));
+        v_profile_plot = @(x) v_profile(x) ./ max(v_profile(r_plot));
         v_data = v_data ./ max(v_data);
     end
 
     hold on;
     plot(r*u2mm, v_data, 'o', 'Color', color2, 'LineWidth', 2)
-    plot(r_plot*u2mm, v_profile(r_plot), 'Color', color1, 'LineWidth', 2);
+    plot(r_plot*u2mm, v_profile_plot(r_plot), 'Color', color1, 'LineWidth', 2);
     xlim([r(1)*u2mm, r(end)*u2mm])
 end
 
