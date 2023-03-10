@@ -1,5 +1,3 @@
-flowSpeeds(20, 1)
-
 function v_avg = flowSpeeds(percentFlow, plots)
 
 r_outter = 1.2;
