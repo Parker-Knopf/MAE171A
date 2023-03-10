@@ -1,0 +1,23 @@
+clear all; close all; clc;
+
+figure(1)
+
+v = [20, 40, 60, 80, 100];
+color = ["blue", "red", "k", "green", "m"];
+
+for i = 1:length(v)
+    flowSpeed(v(i), 1, color(i))
+end
+
+title("Velocity Flow vs Radial Pipe Axis")
+ylabel("Velocity (m/s)")
+xlabel("Radial Axis (mm)")
+names = strsplit(sprintf("Fan Percentage: %d%%,", v), ',');
+
+lengendNames = strings(1, 2*length(v));
+for i = 1:length(v)
+    lengendNames(2*i) = names(i);
+end
+
+legend(lengendNames)
+

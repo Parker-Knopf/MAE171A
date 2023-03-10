@@ -1,4 +1,4 @@
-function v_avg = flowSpeeds(percentFlow, plots)
+function v_avg = flowSpeeds(percentFlow, plots, varargin)
 
 r_outter = 1.2;
 in2m = 0.0254;
@@ -31,11 +31,22 @@ if (plots)
     u2mm = 1000;
     r_plot = linspace(0, r_outter, 40) .* in2m;
     
+    if length(varargin) >= 1
+        color1 = varargin{1};
+        color2 = varargin{1};
+    else
+        color1 = 'blue';
+        color2 = 'red';
+    end
+
+    if (length(varargin) >= 2 && varargin{2}==1)
+        v_profile = @(x) v_profile(x) ./ max(v_profile(r_plot));
+        v_data = v_data ./ max(v_data);
+    end
+
     hold on;
-    plot(r_plot*u2mm, v_profile(r_plot));
-    title("Velocity Flow vs Radial Pipe Axis")
-    ylabel("Velocity (m/s)")
-    xlabel("Radial Axis (mm)")
+    plot(r*u2mm, v_data, 'o', 'Color', color2, 'LineWidth', 2)
+    plot(r_plot*u2mm, v_profile(r_plot), 'Color', color1, 'LineWidth', 2);
     xlim([r(1)*u2mm, r(end)*u2mm])
 end
 
