@@ -1,4 +1,4 @@
-function v_avg = flowSpeeds(percentFlow, plots, varargin)
+function v_avg = flowSpeed(percentFlow, plots, varargin)
 
 r_outter = 1.2;
 in2m = 0.0254;
