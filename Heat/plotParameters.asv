@@ -81,24 +81,23 @@ plot(sqrt(results75(1,:)),results75(2,:),'k-','LineWidth',2);
 plot(sqrt(results100(1,:)),results100(2,:),'c-','LineWidth',2);
 plot(sqrt(results125(1,:)),results125(2,:),'m-','LineWidth',2);
 plot(sqrt(results150(1,:)),results150(2,:),'g-','LineWidth',2);
-
+fplot(@(re) 0.66*sqrt(re),sqrt([min(results75(1,:)) max(results75(1,:))]),'r--','LineWidth',2);
 ylabel('h [W/m^2K]');
-ylim([0 1.1*max(results75(2,:))]);
-set(gca,'YColor','k')
+ylim([0 max(results75(2,:))]);
 
 yyaxis right;
 plot(sqrt(results75(1,:)),results75(3,:),'k-','LineWidth',2);
 plot(sqrt(results100(1,:)),results100(3,:),'c-','LineWidth',2);
 plot(sqrt(results125(1,:)),results125(3,:),'m-','LineWidth',2);
 plot(sqrt(results150(1,:)),results150(3,:),'g-','LineWidth',2);
-fplot(@(re) 0.66*sqrt(re),sqrt([min(results75(1,:)) max(results75(1,:))]),'r--','LineWidth',2);
-
 ylabel('Nu');
-ylim([0 1.1*max(results75(3,:))]);
-set(gca,'YColor','k')
+ylim([0 100*3.186*10^-2])
 
 xlabel('$\sqrt{Re}$','Interpreter','latex');
-legend('75C','100C','125C','150C','','','','',...
+
+set(gca,'YColor','k')
+
+legend('75C','100C','125C','150C',...
        'Numerical Prediction',...
        'Location','northwest');
 set(gca,'FontSize',14);

@@ -28,10 +28,10 @@ data = readmatrix(fileName);
 
 %% Calculate qdot
 V_heater = mean(data(:,3));
-V_sense = mean(data(:,6));
+V_sense = mean(data(:,4));
 V = V_heater - V_sense;
 R_sense = 5; % Resistor of sensor in [Ohm], uncertainty of 0.01
-I = V/R_sense;
+I = V_sense/R_sense;
 P = V * I;
 qdot = P/A;
 
