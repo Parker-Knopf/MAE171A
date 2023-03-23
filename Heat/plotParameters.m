@@ -14,7 +14,7 @@ for i=1:nLong
     tempC = longTemps(i);
     flowSpeedPct = longSpeeds(i);
     [h, Nu, Re] = calculateParameters(tempC,flowSpeedPct,true);
-    results = [Re; h; Nu];
+    results = [Re; h; Nu; flowSpeedPct; tempC];
     switch tempC
         case 75
             results75 = [results75 results];
@@ -33,7 +33,7 @@ shortSpeeds = [35 45 55 75 85 100];
 for tempC = shortTemps
     for flowSpeedPct = shortSpeeds
         [h, Nu, Re] = calculateParameters(tempC,flowSpeedPct,false);
-        results = [Re; h; Nu];
+        results = [Re; h; Nu; flowSpeedPct; tempC];
         switch tempC
             case 75
                 results75 = [results75 results];
